@@ -80,9 +80,9 @@ const GroupList: React.FC<GroupListProps> = ({
                   )}
 
                   {player.scores.length < 8 &&
-                    Array.from(Array(8 - player.scores.length - 1)).map(() => (
-                      <td />
-                    ))}
+                    Array.from(Array(8 - player.scores.length - 1)).map(
+                      (_, i) => <td key={i} />
+                    )}
 
                   <td>{totalScore(player)}</td>
                 </tr>
