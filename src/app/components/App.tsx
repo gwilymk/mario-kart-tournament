@@ -45,13 +45,13 @@ const App: React.FC = () => {
         <PlayerSetup onPlayersSet={handlePlayersSet} />
       ) : (
         <>
-          <h2>Round {round}</h2>
+          <h2>{round == 9 ? "Final results" : `Round ${round}`}</h2>
           <GroupList
             groups={groups}
             pendingScores={pendingScores}
             updateScore={updatePendingScore}
           />
-          <button onClick={handleNextRound}>Next Round</button>
+          {round < 9 && <button onClick={handleNextRound}>Next Round</button>}
         </>
       )}
     </div>
