@@ -5,6 +5,33 @@ import { Player, totalScore } from "../lib/player";
 
 import css from "./GroupList.module.css";
 
+import classNames from "classnames";
+
+interface CupImageProps {
+  cupIndex: number;
+}
+
+const CUPS = [
+  "shell",
+  "banana",
+  "leaf",
+  "lightning",
+  "mushroom",
+  "flower",
+  "star",
+  "special",
+];
+
+const CupImage: React.FC<CupImageProps> = ({ cupIndex }) => {
+  return (
+    <img
+      src={`cups/${CUPS[cupIndex]}.webp`}
+      alt={`${CUPS[cupIndex]} cup`}
+      className={css.cupIcon}
+    />
+  );
+};
+
 interface GroupListProps {
   groups: Player[][];
   pendingScores: { [key: number]: number | null };
@@ -42,36 +69,46 @@ const GroupList: React.FC<GroupListProps> = ({
 
   return (
     <div>
-      <h2>Groups</h2>
       {groups.map((group, index) => (
-        <div key={index}>
-          <h3>Group {index + 1}</h3>
+        <div
+          key={index}
+          className={classNames(css[`bg-group-${index + 1}`], css.group)}
+        >
           <table className={css.table}>
             <thead>
-              <th>Player</th>
-              <th>Shell Cup</th>
-              <th>Banana Cup</th>
-              <th>Leaf Cup</th>
-              <th>Lightning Cup</th>
-              <th>Mushroom Cup</th>
-              <th>Flower Cup</th>
-              <th>Star Cup</th>
-              <th>Special Cup</th>
-              <th>Total</th>
+              <tr>
+                <th>Group {index + 1}</th>
+                {Array.from(Array(8)).map((_, index) => (
+                  <th key={index}>
+                    <CupImage cupIndex={index} />
+                  </th>
+                ))}
+                <th>Total</th>
+              </tr>
             </thead>
             <tbody>
               {group.map((player) => (
                 <tr key={player.id}>
                   <td>{player.name}</td>
                   {player.scores.map((score, i) => (
-                    <td key={i}>{score}</td>
+                    <td key={i}>
+                      <span
+                        className={classNames(
+                          css.scoreNumber,
+                          i === player.scores.length - 1 && css.newScore
+                        )}
+                      >
+                        {score}
+                      </span>
+                    </td>
                   ))}
 
                   {player.scores.length < 8 && (
                     <td>
                       <input
                         type="number"
-                        placeholder="Add Score"
+                        placeholder="Score"
+                        className={css.addScoreInput}
                         value={pendingScores[player.id] ?? ""}
                         onChange={(e) => handleScoreChange(player.id, e)}
                         onKeyPress={(e) => handleKeyPress(player.id, e)}

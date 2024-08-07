@@ -3,11 +3,109 @@
     table-layout: fixed;
 }
 
-.table input {
+.table td {
+    text-align: center;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0;
+}
+
+.cupIcon {
+    max-width: 32px;
+}
+
+.group {
+    border-radius: 8px;
+    padding: 5px 0;
+    margin: 5px;
+
+    border: solid black;
+}
+
+.group h3 {
+    margin-top: 0;
+}
+
+.group tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 10%);
+}
+
+.group tbody {
+    border-top: 1px solid black;
+}
+
+.bg-group-1 {
+    background-color: #ffd700;
+}
+
+.bg-group-2 {
+    background-color: #00bfff;
+}
+
+.bg-group-3 {
+    background-color: #32cd32;
+}
+
+.bg-group-4 {
+    background-color: #ff4500;
+}
+
+.bg-group-5 {
+    background-color: #8a2be2;
+}
+
+/* General Input Styles */
+.addScoreInput {
+    padding: 2px; /* Add padding */
+    margin: 5px 0; /* Add some margin */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    border: 2px solid #ccc; /* Light grey border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px; /* Set font size */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for border and box-shadow */
+
     width: 100%;
     -moz-appearance: textfield;
 }
 
-.table td {
-    text-align: center;
+/* Focus Effect */
+.addScoreInput:focus {
+    border-color: #4CAF50; /* Green border on focus */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Green glow on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Placeholder Styles */
+.addScoreInput::placeholder {
+    color: #999; /* Light grey placeholder text */
+    font-style: italic; /* Italicize placeholder text */
+}
+
+/* Animation Keyframes */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        color: initial;
+    }
+    50% {
+        transform: scale(1.5);
+        color: #FFD700; /* Gold color */
+    }
+    100% {
+        transform: scale(1);
+        color: initial;
+    }
+}
+
+/* Apply Animation */
+.scoreNumber {
+    display: inline-block; /* Ensure the element can be scaled */
+    transition: transform 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.scoreNumber.newScore {
+    animation: pulse 0.5s ease-in-out; /* Apply the pulse animation */
 }

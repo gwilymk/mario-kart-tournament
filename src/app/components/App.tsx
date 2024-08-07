@@ -5,6 +5,8 @@ import PlayerSetup from "./PlayerSetup";
 import GroupList from "./GroupList";
 import { allocateGroups, Player } from "../lib/player";
 
+import css from "./App.module.css";
+
 const App: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>([]);
   const [isTournamentStarted, setIsTournamentStarted] =
@@ -40,18 +42,23 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <h1>Tournament Scoreboard</h1>
       {!isTournamentStarted ? (
         <PlayerSetup onPlayersSet={handlePlayersSet} />
       ) : (
         <>
-          <h2>{round == 9 ? "Final results" : `Round ${round}`}</h2>
+          <h2 className={css.roundCounter}>
+            {round == 9 ? "Final results" : `Round ${round}`}
+          </h2>
           <GroupList
             groups={groups}
             pendingScores={pendingScores}
             updateScore={updatePendingScore}
           />
-          {round < 9 && <button onClick={handleNextRound}>Next Round</button>}
+          {round < 9 && (
+            <button className={css.nextRoundButton} onClick={handleNextRound}>
+              Next Round
+            </button>
+          )}
         </>
       )}
     </div>

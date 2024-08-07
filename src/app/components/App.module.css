@@ -1,0 +1,38 @@
+.roundCounter {
+    text-align: center;
+    font-size: 2em;
+}
+
+/* General Button Styles */
+.nextRoundButton {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 15px 32px; /* Increase padding */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make it inline-block */
+    font-size: 16px; /* Increase font size */
+    margin: 10px 2px; /* Add some margin */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    border-radius: 8px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for background and transform */
+}
+
+/* Hover Effect */
+.nextRoundButton:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Active Effect */
+.nextRoundButton:active {
+    background-color: #3e8e41; /* Even darker green when active */
+    transform: scale(1.00); /* Reset size when clicked */
+}
+
+/* Focus Effect */
+.nextRoundButton:focus {
+    outline: none; /* Remove the outline */
+    box-shadow: 0 0 5px #45a049; /* Add a green glow */
+}
