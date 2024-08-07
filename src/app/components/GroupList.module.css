@@ -17,10 +17,21 @@
     max-width: 32px;
 }
 
+.groups {
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+
+    justify-items: center;
+}
+
 .group {
     border-radius: 8px;
     padding: 5px 0;
     margin: 5px;
+
+    color: black;
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
 
     border: solid black;
 }
@@ -82,6 +93,7 @@
 .addScoreInput::placeholder {
     color: #999; /* Light grey placeholder text */
     font-style: italic; /* Italicize placeholder text */
+    text-align: center;
 }
 
 /* Animation Keyframes */

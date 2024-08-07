@@ -1,3 +1,13 @@
 .main {
-  max-width: 1000px;
+  height: 100%;
+  width: 100%;
+
+  background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Ensure the background stays fixed */
+  background-size: cover; /* Cover the entire background */
+  color: white; /* Set text color to white for contrast */
+
+  display: flex;
+  justify-content: center;
 }

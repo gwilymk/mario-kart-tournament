@@ -68,7 +68,7 @@ const GroupList: React.FC<GroupListProps> = ({
   };
 
   return (
-    <div>
+    <div className={css.groups}>
       {groups.map((group, index) => (
         <div
           key={index}

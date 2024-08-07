@@ -5,7 +5,7 @@
 
 /* General Button Styles */
 .nextRoundButton {
-    background-color: #4CAF50; /* Green background */
+    background: linear-gradient(135deg, #4CAF50, #45a049);
     border: none; /* Remove borders */
     color: white; /* White text */
     padding: 15px 32px; /* Increase padding */
@@ -21,13 +21,12 @@
 
 /* Hover Effect */
 .nextRoundButton:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background: linear-gradient(135deg, #45a049, #4CAF50);
     transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 /* Active Effect */
 .nextRoundButton:active {
-    background-color: #3e8e41; /* Even darker green when active */
     transform: scale(1.00); /* Reset size when clicked */
 }
 
