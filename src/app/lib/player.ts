@@ -4,12 +4,33 @@ export interface Player {
   scores: number[];
 }
 
+const GROUP_SIZES: { [key: number]: number[] | undefined } = {
+  7: [7],
+  8: [8],
+  9: [5, 4],
+  10: [5, 5],
+  11: [6, 5],
+  12: [4, 4, 4],
+  13: [5, 4, 4],
+  14: [6, 4, 4],
+  15: [6, 5, 4],
+  16: [6, 6, 4],
+  17: [6, 6, 5],
+  18: [6, 6, 6],
+};
+
+for (const [size, split] of Object.entries(GROUP_SIZES)) {
+  if (split == null || split.reduce((x, a) => x + a, 0) != +size) {
+    throw new Error("Invalid group size " + size);
+  }
+}
+
 export function allocateGroups(players: Player[]): Player[][] {
   if (players.length < 7) {
     throw new Error("Tournament is invalid with fewer than 7 players.");
   }
 
-  const sortedPlayers = [...players].sort((a, b) => {
+  const sortedPlayers = players.toSorted((a, b) => {
     const totalDifference = totalScore(b) - totalScore(a);
 
     if (totalDifference !== 0) {
@@ -20,24 +41,19 @@ export function allocateGroups(players: Player[]): Player[][] {
   });
   const groups: Player[][] = [];
 
-  // Top group with 4 players
-  groups.push(sortedPlayers.slice(0, 4));
-
-  const remainingPlayers = sortedPlayers.slice(4);
-
-  while (remainingPlayers.length > 0) {
-    if (remainingPlayers.length >= 4) {
-      groups.push(remainingPlayers.splice(0, 4));
-    } else {
-      groups.push(remainingPlayers.splice(0, remainingPlayers.length));
-    }
+  const groupSizes = GROUP_SIZES[players.length];
+  if (groupSizes == null) {
+    throw new Error("Unsupported group size " + players.length);
   }
 
-  if (groups[groups.length - 1].length < 3) {
-    groups[groups.length - 2] = groups[groups.length - 2].concat(
-      groups[groups.length - 1]
+  for (const groupSize of groupSizes) {
+    groups.push(sortedPlayers.splice(0, groupSize));
+  }
+
+  if (sortedPlayers.length > 0) {
+    throw new Error(
+      "logic error, should not have any players left after assigning groups"
     );
-    groups.length -= 1;
   }
 
   return groups;
